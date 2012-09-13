@@ -56,6 +56,20 @@ $(function() {
             todos.fetch();
         },
 
+        createTodo: function() {
+            var value = this.input.val();
+
+            if(!value) {
+                return false;
+            }
+
+            todos.creat({
+                content: value
+            });
+
+            this.input.val('');
+        },
+
         appendTodo: function(todo) {
             var view = new TodoView({
                 model: todo
@@ -63,4 +77,7 @@ $(function() {
             this.todoList.append(view.render().el);
         }
     });
+
+    var todos = new TodoList();
+    var app = new AppView(todos);
 });
