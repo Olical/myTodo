@@ -1,0 +1,1 @@
+Just a learning exercise for me in JavaSciript MVC with Backbone.
