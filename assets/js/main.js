@@ -21,7 +21,7 @@ $(function() {
         }
     });
 
-    var TodoList = new Backbone.Collection.extend({
+    var TodoList = Backbone.Collection.extend({
         model: Todo,
         localStorage: new Store('todos'),
 
@@ -30,7 +30,7 @@ $(function() {
         }
     });
 
-    var TodoView = new Backbone.View.extend({
+    var TodoView = Backbone.View.extend({
         tagName: 'li',
         template: _.template($('#todo-template').html()),
 
@@ -40,7 +40,7 @@ $(function() {
         }
     });
 
-    var AppView = new Backbone.View.extend({
+    var AppView = Backbone.View.extend({
         el: $('#todo-app'),
         events: {
             'click #create-todo': 'createTodo'
