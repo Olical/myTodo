@@ -63,7 +63,7 @@ $(function() {
                 return false;
             }
 
-            todos.creat({
+            todos.create({
                 content: value
             });
 
