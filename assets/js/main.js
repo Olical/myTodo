@@ -1,6 +1,6 @@
 $(function() {
-    /*global Backbone:true,Store:true*/
-
+    /*jshint jquery:true*/
+    /*global Backbone:true,Store:true,_:true*/
     'use strict';
 
     var Todo = Backbone.Model.extend({
@@ -27,6 +27,16 @@ $(function() {
 
         comparator: function(todo) {
             return todo.created;
+        }
+    });
+
+    var TodoView = new Backbone.View.extend({
+        tagName: 'li',
+        template: _.template($('#todo-template').html()),
+
+        render: function() {
+            this.$el.html(this.template(this.model));
+            return this;
         }
     });
 });
