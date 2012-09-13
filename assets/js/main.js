@@ -26,7 +26,7 @@ $(function() {
         localStorage: new Store('todos'),
 
         comparator: function(todo) {
-            return todo.created;
+            return todo.get('created');
         }
     });
 
