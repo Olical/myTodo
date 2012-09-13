@@ -6,16 +6,16 @@ $(function() {
     var Todo = Backbone.Model.extend({
         defaults: function() {
             return {
-                title: 'nothing to do here...',
+                content: 'nothing to do here...',
                 created: new Date().getTime(),
                 done: false
             };
         },
 
         initialize: function() {
-            if(!this.get('title')) {
+            if(!this.get('content')) {
                 this.set({
-                    title: this.defaults.title
+                    content: this.defaults.content
                 });
             }
         }
@@ -37,6 +37,30 @@ $(function() {
         render: function() {
             this.$el.html(this.template(this.model));
             return this;
+        }
+    });
+
+    var AppView = new Backbone.View.extend({
+        el: $('#todo-app'),
+        events: {
+            'click #create-todo': 'createTodo'
+        },
+
+        initialize: function(todos) {
+            this.todos = todos;
+
+            this.list = this.$('#todo-list');
+            this.input = this.$('#todo-content');
+
+            todos.bind('add', this.appendTodo, this);
+            todos.fetch();
+        },
+
+        appendTodo: function(todo) {
+            var view = new TodoView({
+                model: todo
+            });
+            this.todoList.append(view.render().el);
         }
     });
 });
