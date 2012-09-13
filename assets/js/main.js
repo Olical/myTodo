@@ -14,7 +14,7 @@ $(function() {
 
         initialize: function() {
             if(!this.get('content')) {
-                this.set({
+                this.save({
                     content: this.defaults.content
                 });
             }
@@ -33,6 +33,11 @@ $(function() {
     var TodoView = Backbone.View.extend({
         tagName: 'li',
         template: _.template($('#todo-template').html()),
+
+        initialize: function() {
+            this.model.bind('change', this.render, this);
+            this.model.bind('destroy', this.remove, this);
+        },
 
         render: function() {
             this.$el.html(this.template(this.model.toJSON()));
@@ -53,6 +58,7 @@ $(function() {
             this.input = this.$('#todo-content');
 
             todos.bind('add', this.appendTodo, this);
+            todos.bind('reset', this.appendAllTodos, this);
             todos.fetch();
         },
 
@@ -63,7 +69,7 @@ $(function() {
                 return false;
             }
 
-            todos.create({
+            this.todos.create({
                 content: value
             });
 
@@ -75,6 +81,11 @@ $(function() {
                 model: todo
             });
             this.list.append(view.render().el);
+        },
+
+        appendAllTodos: function() {
+            this.list.html('');
+            this.todos.each(this.appendTodo, this);
         }
     });
 
