@@ -1,5 +1,5 @@
 $(function() {
-    /*global Backbone:true*/
+    /*global Backbone:true,Store:true*/
 
     'use strict';
 
@@ -18,6 +18,15 @@ $(function() {
                     title: this.defaults.title
                 });
             }
+        }
+    });
+
+    var TodoList = new Backbone.Collection.extend({
+        model: Todo,
+        localStorage: new Store('todos'),
+
+        comparator: function(todo) {
+            return todo.created;
         }
     });
 });
