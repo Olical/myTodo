@@ -8,8 +8,8 @@
     <body>
         <div class='todo-app'>
             <ul id='todo-list'></ul>
-            <input type='text' id='new-todo-content'>
-            <button id='create-new-todo'>Create todo</button>
+            <input type='text' id='todo-content'>
+            <button id='create-todo'>Create todo</button>
         </div>
 
         <script type='text/javascript' src='/components/json2/json2.js'></script>
@@ -18,5 +18,9 @@
         <script type='text/javascript' src='/components/backbone/backbone.js'></script>
         <script type='text/javascript' src='/components/Backbone.localStorage/backbone.localStorage.js'></script>
         <script type='text/javascript' src='/assets/js/main.js'></script>
+
+        <script type='text/template' id='todo-template'>
+            <%- content %>
+        </script>
     </body>
 </html>
