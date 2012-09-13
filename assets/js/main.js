@@ -74,7 +74,7 @@ $(function() {
             var view = new TodoView({
                 model: todo
             });
-            this.todoList.append(view.render().el);
+            this.list.append(view.render().el);
         }
     });
 
