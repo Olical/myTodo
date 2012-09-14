@@ -23,6 +23,7 @@ define(function() {
         },
 
         toggleDone: function() {
+            // Sets the current done flag to it's opposite value
             this.save({
                 done: !this.get('done')
             });
