@@ -20,6 +20,12 @@ define(function() {
                     content: this.defaults.content
                 });
             }
+        },
+
+        toggleDone: function() {
+            this.save({
+                done: !this.get('done')
+            });
         }
     });
 
