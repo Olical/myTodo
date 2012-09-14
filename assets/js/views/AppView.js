@@ -1,6 +1,7 @@
 define([
-    'views/TodoView'
-], function(TodoView) {
+    'views/TodoView',
+    'collections/TodoList'
+], function(TodoView, TodoList) {
     // The main app view the encapsulates everything
     // Manages the creation of todos among many other things
     // Basically the box that the list sits in
@@ -10,20 +11,20 @@ define([
             'click #create-todo': 'createTodo'
         },
 
-        initialize: function(todos) {
-            this.todos = todos;
+        initialize: function() {
+            this.todos = new TodoList();
 
             this.list = this.$('#todo-list');
             this.input = this.$('#todo-content');
 
             // When any are added or the list needs completely building
             // Run the appending methods that render and add the elements
-            todos.bind('add', this.appendTodo, this);
-            todos.bind('reset', this.appendAllTodos, this);
+            this.todos.bind('add', this.appendTodo, this);
+            this.todos.bind('reset', this.appendAllTodos, this);
 
             // Load the old data from localStorage
             // Copied into the TodoList instance
-            todos.fetch();
+            this.todos.fetch();
         },
 
         createTodo: function() {
