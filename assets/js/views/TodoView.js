@@ -6,7 +6,8 @@ define(function() {
         tagName: 'li',
         template: _.template($('#todo-template').html()),
         events: {
-            'click .toggle': 'toggleDone'
+            'click .toggle': 'toggleDone',
+            'click .destroy': 'destroy'
         },
 
         initialize: function() {
@@ -21,6 +22,11 @@ define(function() {
 
         toggleDone: function() {
             this.model.toggleDone();
+        },
+
+        destroy: function() {
+            this.model.destroy();
+            return false;
         }
     });
 
