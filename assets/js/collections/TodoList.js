@@ -11,6 +11,18 @@ define([
             // By specifying the created date as the comparator
             // All todos are ordered by created date
             return todo.get('created');
+        },
+
+        done: function() {
+            // Find all todos that are done and return them
+            return this.filter(function(todo) {
+                return todo.get('done');
+            });
+        },
+
+        remaining: function() {
+            // This returns all todos that are NOT done
+            return this.without.apply(this, this.done());
         }
     });
 

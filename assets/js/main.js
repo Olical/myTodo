@@ -1,8 +1,6 @@
 define([
     'views/AppView'
 ], function(AppView) {
-    /*jshint jquery:true*/
-    /*global Backbone:true,Store:true,_:true*/
     'use strict';
 
     // Wait until the DOM is ready
