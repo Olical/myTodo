@@ -11,7 +11,8 @@ define([
         el: $('#todo-app'),
         events: {
             'click #create-todo': 'createTodo',
-            'click #toggle-all': 'toggleAll'
+            'click #toggle-all': 'toggleAll',
+            'click #clear-done': 'clearDone'
         },
 
         initialize: function() {
@@ -23,6 +24,7 @@ define([
             // I don't want to be doing this over and over again
             this.list = this.$('#todo-list');
             this.toggleAllControl = this.$('#toggle-all');
+            this.clearDoneButton = this.$('#clear-done');
             this.input = this.$('#todo-content');
 
             // When any are added or the list needs completely building
@@ -58,6 +60,13 @@ define([
                     done: done
                 });
             });
+        },
+
+        clearDone: function() {
+            _.each(this.todos.done(), function(todo) {
+                todo.destroy();
+            });
+            return false;
         },
 
         createTodo: function() {
