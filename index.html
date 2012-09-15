@@ -15,7 +15,11 @@
         </div>
 
         <script type='text/template' id='todo-template'>
-            <input class='toggle' type='checkbox'<%= done ? ' checked=\'checked\'' : '' %>> <%- content %> <a href='#' class='destroy'>X</a>
+            <input class='toggle' type='checkbox'<%= done ? ' checked=\'checked\'' : '' %>> <%- content %> <a href='#' class='destroy'>X</a> <a href='#' class='begin-edit'>...</a>
+        </script>
+
+        <script type='text/template' id='edit-todo-template'>
+            <input class='edited' type='text' value='<%- content %>'> <a href='#' class='save-edit'>save</a> <a href='#' class='cancel-edit'>cancel</a>
         </script>
 
         <script type='text/javascript' src='/components/json2/json2.js'></script>
